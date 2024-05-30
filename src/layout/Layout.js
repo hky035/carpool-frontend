@@ -1,25 +1,29 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import GlobalStyle from '../style/GlobalStyles.styles';
 
 const Layout = () => {
 
     const navigate = useNavigate();
 
   return (
-    <Wrapper>
-        <img src='assets/main-logo.png' width='130px' alt='main-logo'></img>
-        <Nav>
-            <NavItem onClick={()=> navigate('/carpool')}>카풀</NavItem>
-            <NavItem onClick={()=> navigate('/post')}>건의사항</NavItem>
-            <NavItem onClick={()=> navigate('/mileage-shop')}>마일리지샵</NavItem>
-        </Nav>
-        <Profile>
-            <LoginItem onClick={()=> navigate('/login')}>login</LoginItem>
-            <LoginItem onClick={()=> navigate('/register')}>register</LoginItem>
-        </Profile>
-
-    </Wrapper>
+    <>
+        <Wrapper>
+            <GlobalStyle/>
+            <img src='assets/main-logo.png' width='130px' alt='main-logo'></img>
+            <Nav>
+                <NavItem onClick={()=> navigate('/carpool')}>카풀</NavItem>
+                <NavItem onClick={()=> navigate('/post')}>건의사항</NavItem>
+                <NavItem onClick={()=> navigate('/mileage-shop')}>마일리지샵</NavItem>
+            </Nav>
+            <Profile>
+                <LoginItem onClick={()=> navigate('/login')}>login</LoginItem>
+                <LoginItem onClick={()=> navigate('/register')}>register</LoginItem>
+            </Profile>
+        </Wrapper>
+        <Outlet></Outlet>
+    </>
   )
 }
 
