@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./layout/Layout";
 
 function App() {
   return (
@@ -6,12 +7,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout/>}>
-            <Route path="" element={<Main />} />
-            <Route path="carpool" element={<Carpool />} />
-            <Route path="post" element={<Post />} />
-            <Route path="mileage" element={<Mileage />} />
+            {/* <Route path="" element={<Main />} /> */}
+            {/* <Route path="carpool" element={<Carpool />} /> */}
+            {/* <Route path="post" element={<Post />} /> */}
+            {/* <Route path="mileage" element={<Mileage />} /> */}
           </Route>
-        </Routes>
+       </Routes>
       </BrowserRouter>
     </div>
   );
