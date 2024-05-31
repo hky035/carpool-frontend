@@ -3,6 +3,7 @@ import Layout from "./layout/Layout";
 import Main from "./component/main/Main";
 import GlobalStyle from "./style/GlobalStyles.styles";
 import Carpool from "./component/carpool/Carpool";
+import Post from "./component/post/Post";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
           <Route path="/" element={<Layout/>}>
             <Route path="" element={<Main/>} />
             <Route path="carpool" element={<Carpool />} />
-            {/* <Route path="post" element={<Post />} /> */}
+            <Route path="post" element={<Post />} />
             {/* <Route path="mileage" element={<Mileage />} /> */}
           </Route>
        </Routes>
