@@ -4,6 +4,7 @@ import Main from "./component/main/Main";
 import GlobalStyle from "./style/GlobalStyles.styles";
 import Carpool from "./component/carpool/Carpool";
 import Post from "./component/post/Post";
+import Mileage from "./component/mileage/Mileage";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
             <Route path="" element={<Main/>} />
             <Route path="carpool" element={<Carpool />} />
             <Route path="post" element={<Post />} />
-            {/* <Route path="mileage" element={<Mileage />} /> */}
+            <Route path="mileage-shop" element={<Mileage />} />
           </Route>
        </Routes>
       </BrowserRouter>
