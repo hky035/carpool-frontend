@@ -6,6 +6,7 @@ import Carpool from "./component/carpool/Carpool";
 import Post from "./component/post/Post";
 import Mileage from "./component/mileage/Mileage";
 import Login from "./component/login/Login";
+import Register from "./component/login/Register";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="post" element={<Post />} />
             <Route path="mileage-shop" element={<Mileage />} />
             <Route path="login" element={<Login/>} />
+            <Route path="register" element={<Register/>} />
           </Route>
        </Routes>
       </BrowserRouter>
