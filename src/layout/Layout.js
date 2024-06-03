@@ -11,7 +11,7 @@ const Layout = () => {
     <>
         <Wrapper>
             <GlobalStyle/>
-            <img src='assets/main-logo.png' width='130px' alt='main-logo'></img>
+            <Logo src='assets/main-logo.png' alt='main-logo' onClick={()=> navigate('/')}></Logo>
             <Nav>
                 <NavItem onClick={()=> navigate('/carpool')}>카풀</NavItem>
                 <NavItem onClick={()=> navigate('/post')}>건의사항</NavItem>
@@ -41,6 +41,11 @@ box-sizing : border-box;
 const Nav = styled.nav`
 display : flex;
 gap : 10px;
+`;
+
+const Logo = styled.img`
+    width : 130px;
+    cursor: pointer;
 `;
 
 const Profile = styled.div`
