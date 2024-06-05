@@ -7,8 +7,10 @@ import Post from "./component/post/Post";
 import Mileage from "./component/mileage/Mileage";
 import Login from "./component/login/Login";
 import Register from "./component/login/Register";
+import axios from "axios";
 
 function App() {
+
 
   return (
     
