@@ -3,16 +3,25 @@ import styled from 'styled-components'
 import { ReactComponent as UserIcon } from '../../style/asset/user-solid.svg'
 import { ReactComponent as LockIcon } from '../../style/asset/lock-solid.svg'
 import axios from 'axios'
+import { useAuth } from '../../AuthProvider'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
     const [userId, setUserId] = useState("");
     const [password, setPassword] = useState("");
 
-    const loginHandler = () => {
-        axios.post('/api/login', { userId, password })
-            .then(res => console.log(res.data))
-            .catch(error => console.error(error))
+    const authContext = useAuth();
+    const isLogined = authContext.isLogined;
+    const logout = authContext.logout;
+
+    const navigate = useNavigate();
+
+    const loginHandler = async () => {
+        if (await authContext.login(userId, password)) {
+            console.log("suceesed")
+            navigate("/");
+        }
     }
 
   return (

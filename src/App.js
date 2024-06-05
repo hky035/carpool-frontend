@@ -8,6 +8,7 @@ import Mileage from "./component/mileage/Mileage";
 import Login from "./component/login/Login";
 import Register from "./component/login/Register";
 import axios from "axios";
+import AuthProvider from "./AuthProvider";
 
 function App() {
 
@@ -15,18 +16,20 @@ function App() {
   return (
     
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout/>}>
-            <Route path="" element={<Main/>} />
-            <Route path="carpool" element={<Carpool />} />
-            <Route path="post" element={<Post />} />
-            <Route path="mileage-shop" element={<Mileage />} />
-            <Route path="login" element={<Login/>} />
-            <Route path="register" element={<Register/>} />
-          </Route>
-       </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout/>}>
+              <Route path="" element={<Main/>} />
+              <Route path="carpool" element={<Carpool />} />
+              <Route path="post" element={<Post />} />
+              <Route path="mileage-shop" element={<Mileage />} />
+              <Route path="login" element={<Login/>} />
+              <Route path="register" element={<Register/>} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }

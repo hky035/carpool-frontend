@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import GlobalStyle from '../style/GlobalStyles.styles';
+import { useAuth } from '../AuthProvider';
 
 const Layout = () => {
 
+    const authContext = useAuth();
+
+    console.log(authContext.isLogined);
     const navigate = useNavigate();
 
   return (
@@ -16,11 +20,18 @@ const Layout = () => {
                 <NavItem onClick={()=> navigate('/carpool')}>카풀</NavItem>
                 <NavItem onClick={()=> navigate('/post')}>건의사항</NavItem>
                 <NavItem onClick={()=> navigate('/mileage-shop')}>마일리지샵</NavItem>
-            </Nav>
-            <Profile>
-                <LoginItem onClick={()=> navigate('/login')}>login</LoginItem>
-                <LoginItem onClick={()=> navigate('/register')}>register</LoginItem>
-            </Profile>
+              </Nav>
+              {authContext.isLogined ?
+                  <Profile>
+                    <LoginItem onClick={()=> authContext.logout()}>log out</LoginItem>
+                    </Profile>
+                
+                  :
+                  <Profile>
+                  <LoginItem onClick={() => navigate('/login')}>login</LoginItem>
+                  <LoginItem onClick={() => navigate('/register')}>register</LoginItem> 
+              </Profile>
+              }  
         </Wrapper>
         <Outlet></Outlet>
     </>
