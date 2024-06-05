@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
     async function register(userId, password, studentNumber) {
         try {
             const res = await axios.post('/api/register', { userId, password, studentNumber });
-            console.log('register res : ' + res.data)
             return res.data;
         } catch (error) {
             console.error(error)
@@ -23,13 +22,9 @@ export const AuthProvider = ({ children }) => {
     }
 
     async function login(userId, password) {
-        console.log('userId', userId);
-        console.log('password', password);
         try{
             const res = await axios.post('/api/login', { userId, password });
 
-            console.log('res' + res);
-            console.log('login data' + res.data);
             if (res.data.userId === userId) {
                 setIsLogined(true);
                 setUserId(res.data.userId);
