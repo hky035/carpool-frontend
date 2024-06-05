@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ReactComponent as UserIcon } from '../../style/asset/user-solid.svg'
 import { ReactComponent as LockIcon } from '../../style/asset/lock-solid.svg'
+import axios from 'axios'
 
 const Login = () => {
+
+    const [userId, setUserId] = useState("");
+    const [password, setPassword] = useState("");
+
+    const loginHandler = () => {
+        axios.post('/api/login', { userId, password })
+            .then(res => console.log(res.data))
+            .catch(error => console.error(error))
+    }
+
   return (
       <Wrapper>
           <Img></Img>
@@ -13,16 +24,16 @@ const Login = () => {
                   <label for='id'>
                       <UserIcon></UserIcon>
                   </label>
-                  <Input id='id' placeholder='아이디' ></Input>
+                  <Input id='id' placeholder='아이디' value={userId} onChange={e => setUserId(e.target.value)}></Input>
               </InputBox>
 
               <InputBox>
                 <label for='password'>
                       <LockIcon></LockIcon>
                 </label>
-                <Input id='password' placeholder='비밀번호' ></Input>
+                <Input id='password' placeholder='비밀번호' value={password} onChange={e => setPassword(e.target.value)}></Input>
               </InputBox>
-              <SubmitBtn>Log in</SubmitBtn>
+              <SubmitBtn onClick={() => loginHandler()}>Log in</SubmitBtn>
           </LoginForm>
     </Wrapper>
   )
