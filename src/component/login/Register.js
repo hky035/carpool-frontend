@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ReactComponent as UserIcon } from '../../style/asset/user-solid.svg'
 import { ReactComponent as LockIcon } from '../../style/asset/lock-solid.svg'
+import axios from 'axios'
 
 const Register = () => {
+
+    const [userId, setUserId] = useState("");
+    const [password, setPassword] = useState("");
+    const [studentNumber, setStudentNumber] = useState("");
+
+    const registerHandler = async () => {
+        const result = await axios.post('/api/register', { userId, password, studentNumber })
+        console.log('res : ' + result.data);
+
+    }
+
   return (
       <Wrapper>
           <Img></Img>
@@ -13,23 +25,23 @@ const Register = () => {
                   <Label for='id'>
                       아이디 
                   </Label>
-                  <Input id='id' ></Input>
+                  <Input id='id' value={userId} onChange={(e) => setUserId(e.target.value)}></Input>
               </InputBox>
 
               <InputBox>
                 <Label for='password'>
                       패스워드
                 </Label>
-                <Input id='password'></Input>
+                <Input id='password' value={password} onChange={(e) => setPassword(e.target.value)}></Input>
               </InputBox>
 
               <InputBox>
                 <Label for='student-num'>
                       학번
                 </Label>
-                <Input id='student-num' ></Input>
+                <Input id='student-num' value={studentNumber} onChange={(e) => setStudentNumber(e.target.value)}></Input>
               </InputBox>
-              <SubmitBtn>Sign in</SubmitBtn>
+              <SubmitBtn onClick={()=>registerHandler()}>Sign in</SubmitBtn>
           </LoginForm>
     </Wrapper>
   )
