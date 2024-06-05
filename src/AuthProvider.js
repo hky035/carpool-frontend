@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { createContext, useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -11,6 +12,15 @@ export const AuthProvider = ({ children }) => {
     const [userId, setUserId] = useState("");
     const [studentNumber, setStudentNumber] = useState(0);
 
+    async function register(userId, password, studentNumber) {
+        try {
+            const res = await axios.post('/api/register', { userId, password, studentNumber });
+            console.log('register res : ' + res.data)
+            return res.data;
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     async function login(userId, password) {
         console.log('userId', userId);
@@ -37,7 +47,7 @@ export const AuthProvider = ({ children }) => {
     }
 
   return (
-      <AuthContext.Provider value={{ isLogined, login, logout}}>
+      <AuthContext.Provider value={{ isLogined, login, logout, register}}>
           {children}
     </AuthContext.Provider>
   )

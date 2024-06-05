@@ -8,7 +8,6 @@ const Layout = () => {
 
     const authContext = useAuth();
 
-    console.log(authContext.isLogined);
     const navigate = useNavigate();
 
   return (

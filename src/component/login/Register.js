@@ -3,16 +3,22 @@ import styled from 'styled-components'
 import { ReactComponent as UserIcon } from '../../style/asset/user-solid.svg'
 import { ReactComponent as LockIcon } from '../../style/asset/lock-solid.svg'
 import axios from 'axios'
+import { useAuth } from '../../AuthProvider'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
 
     const [userId, setUserId] = useState("");
     const [password, setPassword] = useState("");
     const [studentNumber, setStudentNumber] = useState("");
+    const authContext = useAuth();
+    const navigate = useNavigate();
 
     const registerHandler = async () => {
-        const result = await axios.post('/api/register', { userId, password, studentNumber })
-        console.log('res : ' + result.data);
+        if (await authContext.register(userId, password, studentNumber))
+            navigate('/')
+        else
+            console.log('회원가입 실패');
 
     }
 
