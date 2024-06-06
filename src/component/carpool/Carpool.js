@@ -9,7 +9,15 @@ const Carpool = () => {
     <Wrapper>
         <Instroduction>
             <Title>Carpool</Title>
-            <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, in. Quas, a? Minima odit eius odio dolores nulla magnam veniam esse libero, assumenda omnis debitis et laboriosam necessitatibus velit dignissimos.</Description>
+              <Description>
+                  현지 이용가능한 카풀 서비스를 만나보세요!
+                  <br />
+                  출발지와 목적지를 검색하여 자신이 원하는 곳으로 향하는 학생이 있는지 확인 가능합니다.
+                  <br />
+                  원하는 항목을 클릭하여 개별 카풀 페이지에 접속한 뒤 신청하세요.
+                  <br />
+                  카풀 서비스 제공 학생의 경우 '카풀 등록' 버튼을 클릭하여 새로운 카풀 항목을 추가하실 수 있습니다.
+            </Description>
         </Instroduction>
 
         <SearchBar></SearchBar>
@@ -19,11 +27,8 @@ const Carpool = () => {
             <CarpoolCard />
             <CarpoolCard />
             <CarpoolCard />
-            <MoreView>
-                <More></More>
-                더보기
-            </MoreView>
         </CarpoolContainer>
+
 
 
     </Wrapper>
@@ -41,16 +46,23 @@ const Title = styled.h1`
     font-size : 35px;
     font-weight : 800;
     font-style : italic;
+    margin-bottom : 15px;
 `;
 
 const Description = styled.p`
     margin : 10px 0;
-    width : 600px;
+    line-height : 25px;
 `;
 
 const Instroduction = styled.div`
     margin : 30px 0;
 `;
+
+const Container = styled.div`
+    display : flex;
+    flex-direction : column;
+`;
+
 
 const CarpoolContainer = styled.div`
     display : flex;

@@ -9,12 +9,16 @@ const CarpoolCard = () => {
         <GlobalStyle/>
         <Wrapper>
             <Img></Img>
-            <Info>
-                출발 : 영남대
-                <br></br>
-                도착 : 두류역
-                <br></br>
-                인원 : 3/4
+              <Info>
+                  <Content>
+                      <Label>출발</Label>
+                  </Content>
+                  <Content>
+                      <Label>도착</Label>
+                  </Content>
+                  <Content>
+                      <Label>인원</Label>
+                  </Content>
             </Info>
         </Wrapper>
     </>
@@ -22,8 +26,8 @@ const CarpoolCard = () => {
 }
 
 const Wrapper = styled.div`
-    width : 23%;
-    height : 250px;
+    width : 250px;
+    height : 300px;
     background-color : #fff;
     box-shadow : var(--shadow);
     border-radius : 15px;
@@ -38,6 +42,24 @@ const Img = styled.div`
 const Info = styled.div`
     box-sizing : border-box;
     padding : 15px;
+    gap:5px;
+    display : flex;
+    flex-direction : column;
+
+`;
+
+const Content = styled.div`
+    display : flex;
+    gap : 10px;
+    align-items : center;
+`;
+
+const Label = styled.div`
+    padding : 5px 8px;
+    border-radius : 10px;
+    font-size : 15px;
+    font-weight : bold;
+    border : 1px solid #000;
 `;
 
 export default CarpoolCard
