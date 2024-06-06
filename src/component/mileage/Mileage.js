@@ -1,21 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import MileageCard from './MileageCard';
+import axios from 'axios';
 
 const Mileage = () => {
+
+    const [mileageItem, setMileageItem] = useState([]);
+
+    useEffect(() => {
+        const fetchMileageItems = async () => {
+            const res = await axios.get('/api/mileage-items');
+            console.log(res.data);
+            setMileageItem(res.data);
+        }
+        fetchMileageItems();
+     }, [])
+
   return (
     <Wrapper>
 
         <Instroduction>
             <Title>마일리지 샵</Title>
-            <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, in. Quas, a? Minima odit eius odio dolores nulla magnam veniam esse libero, assumenda omnis debitis et laboriosam necessitatibus velit dignissimos.</Description>
+              <Description>
+                  획득한 마일리지로 다양한 교내 서비스 상품을 구매해보세요!
+                  <br />
+                  원하시는 상품이 있다면 '구매' 버튼을 눌러 구매하세요.
+                  <br />
+                  원하시는 교내 서비스가 있다면 건의사항 게시판에 남겨주세요!
+              </Description>
         </Instroduction>
 
         <ItemContainer>
-            <MileageCard/>
-            <MileageCard/>
-            <MileageCard/>
-            <MileageCard/>
+            {
+                  mileageItem.map(item => {
+                    console.log("item", item)
+                    return <MileageCard item={item}></MileageCard>
+                })
+            }
         </ItemContainer>
 
     </Wrapper>
@@ -31,11 +52,13 @@ const Title = styled.h1`
     font-size : 35px;
     font-weight : 800;
     font-style : italic;
+    margin-bottom : 15px;
 `;
 
 const Description = styled.p`
     margin : 10px 0;
     width : 600px;
+    line-height : 25px;
 `;
 
 const Instroduction = styled.div`

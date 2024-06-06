@@ -1,13 +1,30 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const MileageCard = () => {
+const MileageCard = ({ item }) => {
+
+    const imgPath = (title) => {
+        switch (title) {
+            case "학생식당 식사 구매권":
+                console.log('excuted!!');
+                return "assets/meal-coupon.png";
+            case "도서관 예약권":
+                return "assets/booking-seat-coupon.png";
+            case "주차할인권":
+                return "assets/parkingfee-discount-coupon.png";
+            case "도서대출 연장권":
+                return "assets/book-loan-extension-coupon.png";
+            default:
+                return null;
+        }
+    }
+
   return (
     <Wrapper>
-        <Img></Img>
+          <Img src={imgPath(item.title)}></Img>
         <Description>
-            <Title>교내 식사 구매권</Title>
-            <Body>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, enim. Delectus alias odio nam quidem quos numquam excepturi rem cupiditate obcaecati? Magni odio commodi quam vel illum nobis, libero ipsum.</Body>
+            <Title>{item.title}</Title>
+              <Body>{item.description}</Body>
             <BuyBtn>구매</BuyBtn>
         </Description>
     </Wrapper>
@@ -17,17 +34,21 @@ const MileageCard = () => {
 const Wrapper = styled.div`
     width : 48%;
     display : flex;
+    justify-content : space-between;
     margin-bottom : 20px;
+    align-items : center;
     
 
 `;
 
-const Img = styled.div`
-    width : 30%;
+const Img = styled.img`
+    width : 35%;
+    height : 55%;
+    margin : 0 auto;
 `;
 
 const Description = styled.div`
-    width : 70%;
+    width : 60%;
     background-color : #fff;
     box-shadow : var(--shadow);
     border-radius : 15px;
