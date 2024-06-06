@@ -7,9 +7,9 @@ import Post from "./component/post/Post";
 import Mileage from "./component/mileage/Mileage";
 import Login from "./component/login/Login";
 import Register from "./component/login/Register";
-import axios from "axios";
 import AuthProvider from "./AuthProvider";
 import AddPostPage from "./component/post/AddPostPage";
+import RegisterCarpoolPage from "./component/carpool/RegisterCarpoolPage";
 
 function App() {
 
@@ -23,6 +23,7 @@ function App() {
             <Route path="/" element={<Layout/>}>
               <Route path="" element={<Main/>} />
               <Route path="carpool" element={<Carpool />} />
+              <Route path="carpool/add" element={<RegisterCarpoolPage />} />
               <Route path="post" element={<Post />} />
               <Route path="post/add" element={<AddPostPage/>}/>
               <Route path="mileage-shop" element={<Mileage />} />
