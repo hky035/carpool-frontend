@@ -1,7 +1,26 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import MainPostCard from './MainPostCard';
 
 const PostArea = () => {
+
+    const [postList, setPostList] = useState([]);
+
+    const getAllPost = async () => {
+        const res = await axios.get('/api/post');
+        return res.data;
+    }
+
+    useEffect(() => { 
+        const fetchPostList = async () => {
+            let result = await getAllPost();
+            result = result.slice(0, 4);
+            setPostList(result);
+        }
+        fetchPostList();
+    }, [])
+    
   return (
     <Wrapper>
         <Separator>
@@ -10,10 +29,9 @@ const PostArea = () => {
         </Separator>
 
         <PostContainer>
-            <PostCard/>
-            <PostCard/>
-            <PostCard/>
-            <PostCard/>
+              {postList.map((post) => {
+                  return <MainPostCard post={post}></MainPostCard>               
+            })}
         </PostContainer>
 
     </Wrapper>
