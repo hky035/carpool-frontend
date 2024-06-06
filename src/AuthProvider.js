@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
 const AuthContext = createContext();
 
@@ -8,8 +8,15 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
     
     const [isLogined, setIsLogined] = useState(false);
-    const [userId, setUserId] = useState("");
+    const [id, setId] = useState("");
     const [studentNumber, setStudentNumber] = useState(0);
+
+    useEffect(() => {
+        const sUser = JSON.parse(localStorage.getItem('user'));
+        if (sUser) {
+            setId(sUser);
+        }
+    }, []);
 
     async function register(userId, password, studentNumber) {
         try {
@@ -26,7 +33,9 @@ export const AuthProvider = ({ children }) => {
 
             if (res.data.userId === userId) {
                 setIsLogined(true);
-                setUserId(res.data.userId);
+                setId(res.data.id);
+                console.log(res.data.id);
+                localStorage.setItem('user', JSON.stringify(res.data.id));
                 setStudentNumber(res.data.studentNumber);
                 return true;
                 }
@@ -37,11 +46,12 @@ export const AuthProvider = ({ children }) => {
     }
 
     function logout() {
+        localStorage.removeItem('user');
         setIsLogined(false);
     }
 
   return (
-      <AuthContext.Provider value={{ isLogined, login, logout, register}}>
+      <AuthContext.Provider value={{ isLogined, login, logout, register, id}}>
           {children}
     </AuthContext.Provider>
   )

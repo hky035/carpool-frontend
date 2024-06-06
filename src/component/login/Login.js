@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ReactComponent as UserIcon } from '../../style/asset/user-solid.svg'
 import { ReactComponent as LockIcon } from '../../style/asset/lock-solid.svg'
-import axios from 'axios'
 import { useAuth } from '../../AuthProvider'
 import { useNavigate } from 'react-router-dom'
 
