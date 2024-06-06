@@ -14,7 +14,7 @@ const Layout = () => {
     <>
         <Wrapper>
             <GlobalStyle/>
-            <Logo src='assets/main-logo.png' alt='main-logo' onClick={()=> navigate('/')}></Logo>
+            <Logo src='assets/main-logo.png' onClick={()=> navigate('/')}></Logo>
             <Nav>
                 <NavItem onClick={()=> navigate('/carpool')}>카풀</NavItem>
                 <NavItem onClick={()=> navigate('/post')}>건의사항</NavItem>
