@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const PostCard = () => {
+const PostCard = ({post}) => {
+  console.log(post);
+  console.log(post.title);
   return (
     <Wrapper>
-        <Title>카풀 서비스 개선해주세요</Title>
-        <Author>허기영</Author>
-        <Description>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex sapiente eaque nemo provident doloribus, libero voluptatum mollitia deleniti aliquid nisi deserunt natus, similique officia minus eveniet molestias, consectetur debitis? Error!</Description>
+        <Title>{post.title}</Title>
+        <Author>{post.author}</Author>
+        <Description>{post.description}</Description>
     </Wrapper>
   )
 }

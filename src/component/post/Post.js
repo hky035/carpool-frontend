@@ -1,11 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import PostCard from './PostCard';
 import {ReactComponent as RightArrow} from '../../style/asset/arrow-right-solid.svg'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Post = () => {
     const navigate = useNavigate();
+    const [postList, setPostList] = useState([]);
+
+    const getAllPost = async () => {
+        const res = await axios.get('/api/post');
+        console.log(res);
+        console.log('res.data : ' , res.data)
+        return res.data;
+    }
+
+    useEffect(() => { 
+        const fetchPostList = async () => {
+            const result = await getAllPost();
+            console.log('result', result);
+            setPostList(result);
+        }
+        fetchPostList();
+    },[])
+
   return (
     <Wrapper>
         <Instroduction>
@@ -19,11 +38,8 @@ const Post = () => {
             </DescContainer>
         </Instroduction>
 
-        <PostContainer>
-            <PostCard/>
-            <PostCard/>
-            <PostCard/>
-            <PostCard/>
+          <PostContainer>
+              {postList.map(post => <PostCard post={post} />)}
         </PostContainer>
     </Wrapper>
   )
