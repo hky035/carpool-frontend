@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useAuth } from '../../AuthProvider';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddPostPage = () => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const authContext = useAuth();
+  const navigate = useNavigate();
 
   const submitHandler = async () => {
     const res = await axios.post('/api/post/add', {
@@ -18,6 +20,8 @@ const AddPostPage = () => {
 
     console.log(res);
     console.log('res.data', res.data);
+
+    navigate("/post");
   }
 
   return (
