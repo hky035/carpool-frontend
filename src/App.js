@@ -23,7 +23,7 @@ function App() {
             <Route path="/" element={<Layout/>}>
               <Route path="" element={<Main/>} />
               <Route path="carpool" element={<Carpool />} />
-              <Route path="carpool/add" element={<RegisterCarpoolPage />} />
+              <Route path="carpool/:id" element={<RegisterCarpoolPage />} />
               <Route path="post" element={<Post />} />
               <Route path="post/add" element={<AddPostPage/>}/>
               <Route path="mileage-shop" element={<Mileage />} />

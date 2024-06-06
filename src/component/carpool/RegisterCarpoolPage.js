@@ -1,7 +1,30 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
-const AddCarpoolPage = () => {
+const RegisterCarpoolPage = () => {
+
+
+
+    const params = useParams();
+    const [carpool, setCarpool] = useState(null);
+
+    useEffect(() => {
+        const id = params.id;
+        console.log(id);
+
+        const fetchCarpool = async (id) => {
+            console.log(id);
+            const res = await axios.get(`/api/carpool/${id}`);
+            console.log('res', res);
+            setCarpool(res.data);
+        };
+
+        if (id) {
+            fetchCarpool(id);
+        }
+    }, [params]);
   return (
       <Wrapper>
           <Left>
@@ -12,16 +35,16 @@ const AddCarpoolPage = () => {
           <Right>
               <Title>카풀 서비스 신청</Title>
               <Content>
-                  <Label>출발</Label>
+                  <Label>출발</Label>{carpool.departures}
               </Content>
               <Content>
-                  <Label>도착</Label>
+                  <Label>도착</Label>{carpool.arrivals}
               </Content>
               <Content>
                   <Label>시간</Label>
               </Content>
               <Content>
-                  <Label>인원</Label>
+                  <Label>인원</Label>{carpool.users.length}
               </Content>
 
               <Description>
@@ -81,6 +104,7 @@ const Title = styled.div`
 const Content = styled.div`
     display : flex;
     margin-bottom : 20px;
+    align-items : center;
 `;
 
 const Label = styled.div`
@@ -89,6 +113,7 @@ const Label = styled.div`
     font-size : 20px;
     font-weight : bold;
     border-radius : 30px;
+    margin-right : 15px;
 `;
 
 const Description = styled.div`
@@ -130,4 +155,4 @@ const RegisterBtn = styled.button`
 `;
 
 
-export default AddCarpoolPage
+export default RegisterCarpoolPage

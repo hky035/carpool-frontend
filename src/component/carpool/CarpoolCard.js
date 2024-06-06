@@ -1,13 +1,15 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import GlobalStyle from '../../style/GlobalStyles.styles';
 
 
-const CarpoolCard = ({carpool}) => {
+const CarpoolCard = ({ carpool }) => {
+    
+    const navigate = useNavigate();
+
   return (
     <>
-        <GlobalStyle/>
-        <Wrapper>
+        <Wrapper onClick={() => navigate(`/carpool/${carpool.id}`)}>
             <Img></Img>
               <Info>
                   <Content>
@@ -34,6 +36,7 @@ const Wrapper = styled.div`
     background-color : #fff;
     box-shadow : var(--shadow);
     border-radius : 15px;
+    cursor: pointer;
 `;
 
 const Img = styled.div`
