@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
     html {
         --shadow : 0 10px 30px rgba(0, 0, 0, 0.1);
         --successColor : #42bf3d;
+        --yuColor : rgb(21,57,116);
     }
 `;
 
