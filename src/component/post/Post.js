@@ -30,7 +30,12 @@ const Post = () => {
         <Instroduction>
             <Title>건의 사항</Title>
               <DescContainer>
-                <Description>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi voluptates sunt, impedit voluptatem sit suscipit enim, modi sequi quasi non dicta, debitis iusto iste ullam dolore autem saepe explicabo iure.</Description>
+                <Description>
+                      같이가영 서비스에 대해 불편함을 느끼거나, 개선점이 필요하다면 의견을 남겨주세요!
+                      <br />
+                      건의사항은 수정이 불가능하며 관리자가 확인 후 차후 업데이트 예정입니다.
+                      <br />
+                </Description>
                   <GoToAddPost>
                     <Label onClick={()=> navigate('/post/add')}>의견 남기기</Label>  
                     <RightArrow/>
@@ -54,6 +59,7 @@ const Title = styled.h1`
     font-size : 35px;
     font-weight : 800;
     font-style : italic;
+    margin-bottom : 15px;
 `;
 
 const DescContainer = styled.div`
@@ -85,7 +91,8 @@ const GoToAddPost = styled.div`
 
 const Description = styled.p`
     margin : 10px 0;
-    width : 600px;
+    line-height : 25px;
+    
 `;
 
 const Instroduction = styled.div`
