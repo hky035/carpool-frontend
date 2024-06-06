@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import SearchBar from './SearchBar';
 import CarpoolCard from './CarpoolCard';
 import {ReactComponent as More} from  "../../style/asset/chevron-down-solid.svg";
+import axios from 'axios';
 
 const Carpool = () => {
+
+    const [carpoolList, setCarpoolList] = useState([]);
+
+    
+
+    useEffect(() => {
+        const fetchCarpoolList = async () => {
+            let res = await axios.get('/api/carpool');
+            console.log(res);
+            console.log(res.data);
+            setCarpoolList(res.data);
+        }
+        fetchCarpoolList();
+    },[])
+
   return (
     <Wrapper>
         <Instroduction>
@@ -22,11 +38,8 @@ const Carpool = () => {
 
         <SearchBar></SearchBar>
 
-        <CarpoolContainer>
-            <CarpoolCard />
-            <CarpoolCard />
-            <CarpoolCard />
-            <CarpoolCard />
+          <CarpoolContainer>
+              {carpoolList.map(carpool => <CarpoolCard carpool={carpool}></CarpoolCard>)}
         </CarpoolContainer>
 
 

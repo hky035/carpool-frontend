@@ -2,10 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import MainMileageCard from './MainMileageCard';
+import { useNavigate } from 'react-router-dom';
 
 const MileageArea = () => {
 
     const [mileageItem, setMileageItem] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchMileageItems = async () => {
@@ -23,7 +25,7 @@ const MileageArea = () => {
     <Wrapper>
         <Separator>
             <SubTitle>마일리지 샵</SubTitle>
-            <GoToMileage>더보기</GoToMileage>
+            <GoToMileage onClick={() => navigate('/mileage-shop')}>더보기</GoToMileage>
         </Separator>
 
         <MileageContainer>

@@ -2,8 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import MainPostCard from './MainPostCard';
+import { useNavigate } from 'react-router-dom';
 
 const PostArea = () => {
+
+    const navigate = useNavigate();
 
     const [postList, setPostList] = useState([]);
 
@@ -25,7 +28,7 @@ const PostArea = () => {
     <Wrapper>
         <Separator>
             <SubTitle>건의사항</SubTitle>
-            <GoToPost>더보기</GoToPost>
+            <GoToPost onClick={() => navigate('/post')}>더보기</GoToPost>
         </Separator>
 
         <PostContainer>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import GlobalStyle from '../../style/GlobalStyles.styles';
 
 
-const CarpoolCard = () => {
+const CarpoolCard = ({carpool}) => {
   return (
     <>
         <GlobalStyle/>
@@ -12,12 +12,15 @@ const CarpoolCard = () => {
               <Info>
                   <Content>
                       <Label>출발</Label>
+                      {carpool.departures}
                   </Content>
                   <Content>
                       <Label>도착</Label>
+                      {carpool.arrivals}
                   </Content>
                   <Content>
                       <Label>인원</Label>
+                      {carpool.users.length}
                   </Content>
             </Info>
         </Wrapper>
