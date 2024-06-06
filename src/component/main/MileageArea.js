@@ -1,7 +1,24 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
+import MainMileageCard from './MainMileageCard';
 
 const MileageArea = () => {
+
+    const [mileageItem, setMileageItem] = useState([]);
+
+    useEffect(() => {
+        const fetchMileageItems = async () => {
+            const res = await axios.get('/api/mileage-items');
+            console.log(res.data);
+            let result = res.data;
+
+            result = result.slice(0, 4);
+            setMileageItem(result);
+        }
+        fetchMileageItems();
+     }, [])
+
   return (
     <Wrapper>
         <Separator>
@@ -10,10 +27,7 @@ const MileageArea = () => {
         </Separator>
 
         <MileageContainer>
-            <MileageCard></MileageCard>
-            <MileageCard></MileageCard>
-            <MileageCard></MileageCard>
-            <MileageCard></MileageCard>
+              {mileageItem.map(item => <MainMileageCard item={item}/>)}
         </MileageContainer>
     </Wrapper>
   )
