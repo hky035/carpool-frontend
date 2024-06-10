@@ -1,30 +1,48 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import { useAuth } from '../../AuthProvider';
 
 const RegisterCarpoolPage = () => {
 
-
-
     const params = useParams();
     const [carpool, setCarpool] = useState(null);
+    const authContext = useAuth();
 
     useEffect(() => {
         const id = params.id;
-        console.log(id);
 
         const fetchCarpool = async (id) => {
-            console.log(id);
             const res = await axios.get(`/api/carpool/${id}`);
-            console.log('res', res);
             setCarpool(res.data);
         };
 
         if (id) {
             fetchCarpool(id);
         }
-    }, [params]);
+    }, [params.id]);
+
+    if (!carpool) {
+        return <div>Loading...</div>; // 또는 다른 로딩 표시 방법
+    }
+
+    const registerHandler = async () => {
+        // authContext.id를 제출해야한다. 얘는 userId로 받아와야 할 듯
+        console.log('clicked!');
+        const res = await axios.post('/api/carpool/register', {
+            carpoolId: params.id,
+            userId: authContext.id
+        })
+
+        if (res != null) {
+            setCarpool(res.data);
+        }
+
+        // res가 제대로 되었으면 리렌더링 되도록
+    }
+
+
   return (
       <Wrapper>
           <Left>
@@ -41,10 +59,10 @@ const RegisterCarpoolPage = () => {
                   <Label>도착</Label>{carpool.arrivals}
               </Content>
               <Content>
-                  <Label>시간</Label>
+                  <Label>시간</Label>{carpool.date}
               </Content>
               <Content>
-                  <Label>인원</Label>{carpool.users.length}
+                  <Label>인원</Label>{carpool.users === null ? 0 : carpool.users.length }
               </Content>
 
               <Description>
@@ -57,7 +75,7 @@ const RegisterCarpoolPage = () => {
                       3. 정해진 만남 시간과 장소를 확실히 지켜주세요.
                   </DescBody>
               </Description>
-              <RegisterBtn>신청</RegisterBtn>
+              <RegisterBtn onClick={registerHandler}>신청</RegisterBtn>
           </Right>
     </Wrapper>
   )
@@ -136,6 +154,7 @@ const DescBody = styled.div`
     font-size : 18px;
     font-weight : bold;
     line-height : 30px;
+    
 `;
 
 const RegisterBtn = styled.button`

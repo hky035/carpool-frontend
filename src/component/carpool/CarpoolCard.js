@@ -22,7 +22,7 @@ const CarpoolCard = ({ carpool }) => {
                   </Content>
                   <Content>
                       <Label>인원</Label>
-                      {carpool.users.length}
+                      {carpool.users === null ? 0 : carpool.users.length }
                   </Content>
             </Info>
         </Wrapper>
