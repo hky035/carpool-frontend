@@ -11,26 +11,26 @@ import AuthProvider from "./AuthProvider";
 import AddPostPage from "./component/post/AddPostPage";
 import RegisterCarpoolPage from "./component/carpool/RegisterCarpoolPage";
 import AddCarpool from "./component/carpool/AddCarpool";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
-
-
   return (
-    
     <div>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Layout/>}>
-              <Route path="" element={<Main/>} />
+            <Route path="/" element={<Layout />}>
+              <Route path="" element={<Main />} />
               <Route path="carpool" element={<Carpool />} />
               <Route path="carpool/:id" element={<RegisterCarpoolPage />} />
-              <Route path="carpool/add" element={<AddCarpool />}/>
               <Route path="post" element={<Post />} />
-              <Route path="post/add" element={<AddPostPage/>}/>
+              <Route element={<PrivateRoute />}>
+                <Route path="carpool/add" element={<AddCarpool />} />
+                <Route path="post/add" element={<AddPostPage />} />
+              </Route>
               <Route path="mileage-shop" element={<Mileage />} />
-              <Route path="login" element={<Login/>} />
-              <Route path="register" element={<Register/>} />
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
             </Route>
           </Routes>
         </BrowserRouter>
