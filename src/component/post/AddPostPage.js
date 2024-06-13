@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useAuth } from "../../AuthProvider";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import apiClient from "../../api/apiClient";
 
 const AddPostPage = () => {
   const [title, setTitle] = useState("");
@@ -11,14 +11,11 @@ const AddPostPage = () => {
   const navigate = useNavigate();
 
   const submitHandler = async () => {
-    const res = await axios.post("/api/post/add", {
+    const res = await apiClient.post("/api/post/add", {
       title,
       description,
       userId: authContext.id,
     });
-
-    console.log(res);
-    console.log("res.data", res.data);
 
     if (res.data.title === title) {
       navigate("/post");
