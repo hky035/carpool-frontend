@@ -42,9 +42,8 @@ export const AuthProvider = ({ children }) => {
       if (res.data.userId === userId) {
         setIsLogined(true);
         setId(res.data.id);
-        console.log(res.data.id);
-        localStorage.setItem("user", JSON.stringify(res.data.id));
         setStudentNumber(res.data.studentNumber);
+        localStorage.setItem("user", JSON.stringify(res.data.id));
         return true;
       }
     } catch (error) {
