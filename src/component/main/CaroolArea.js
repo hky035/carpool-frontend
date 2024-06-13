@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as Arrow } from "../../style/asset/arrow-right-solid.svg";
 import { useNavigate } from "react-router-dom";
+import apiClient from "../../api/apiClient";
+import MainCarpoolCard from "./MainCarpoolCard";
 
 const CarpoolArea = () => {
   const navigate = useNavigate();
+  const [carpoolList, setCarpoolList] = useState([]);
+
+  useEffect(() => {
+    const fetchCarpoolList = async () => {
+      let res = await apiClient.get("/api/carpool");
+      setCarpoolList(res.data.slice(0, 4));
+    };
+    fetchCarpoolList();
+  }, []);
 
   return (
     <Wrapper>
       <SubTitle>카풀 서비스</SubTitle>
 
       <CarpoolContainer>
-        <CarpoolCard />
-        <CarpoolCard />
-        <CarpoolCard />
-        <CarpoolCard />
+        {carpoolList.map((carpool) => (
+          <MainCarpoolCard key={carpool.id} carpool={carpool}></MainCarpoolCard>
+        ))}
         <GoToCarpool onClick={() => navigate("/carpool")}>
           <Arrow />
         </GoToCarpool>
@@ -37,14 +47,6 @@ const CarpoolContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const CarpoolCard = styled.div`
-  background-color: #fff;
-  box-shadow: var(--shadow);
-  width: 200px;
-  height: 230px;
-  border-radius: 15px;
 `;
 
 const GoToCarpool = styled.div`
