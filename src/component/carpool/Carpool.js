@@ -97,9 +97,8 @@ const GoToAddCarpool = styled.div`
 
 const CarpoolContainer = styled.div`
   display: flex;
-  /* justify-content: space-between; */
   box-sizing: border-box;
-  padding: 0px 13%;
+  padding: 0px 30px;
   flex-wrap: wrap;
   margin: 30px 0;
 `;
