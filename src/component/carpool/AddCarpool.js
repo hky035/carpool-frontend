@@ -14,12 +14,12 @@ const AddCarpool = () => {
   const submitHandler = async () => {
     const result = await apiClient.post("/api/carpool/add", {
       userId: authContext.id,
-      departures,
-      arrivals,
-      date: date,
+      departures: departures,
+      arrivals: arrivals,
+      date: date
     });
 
-    if (result.departures !== departures) {
+    if (result.data.id === null) {
       alert("이미 등록한 카풀이 존재하여 등록 불가합니다.");
       return;
     }

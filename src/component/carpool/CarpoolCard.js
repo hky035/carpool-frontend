@@ -35,12 +35,22 @@ const CarpoolCard = ({ carpool }) => {
 };
 
 const Wrapper = styled.div`
-  width: 250px;
+  width: 20%;
   height: 370px;
   background-color: #fff;
   box-shadow: var(--shadow);
   border-radius: 15px;
   cursor: pointer;
+  margin-bottom: 30px;
+  transition: 0.3s;
+
+  &:not(:last-child) {
+    margin-right: 5%;
+  }
+
+  &:hover {
+    box-shadow: 0 13px 18px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const Poster = styled.div`

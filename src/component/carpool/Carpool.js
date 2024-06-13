@@ -97,25 +97,11 @@ const GoToAddCarpool = styled.div`
 
 const CarpoolContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  box-sizing: border-box;
+  padding: 0px 13%;
   flex-wrap: wrap;
   margin: 30px 0;
-`;
-
-const MoreView = styled.div`
-  display: flex;
-  gap: 15px;
-  align-self: center;
-  border-radius: 10px;
-
-  box-sizing: border-box;
-  padding: 10px;
-  margin: 30px auto 10px;
-  transition: 0.3s;
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
 `;
 
 export default Carpool;
