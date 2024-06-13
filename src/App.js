@@ -12,6 +12,7 @@ import AddPostPage from "./component/post/AddPostPage";
 import RegisterCarpoolPage from "./component/carpool/RegisterCarpoolPage";
 import AddCarpool from "./component/carpool/AddCarpool";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "./layout/ErrorPage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <Route path="mileage-shop" element={<Mileage />} />
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
+              <Route path="*" element={<ErrorPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
