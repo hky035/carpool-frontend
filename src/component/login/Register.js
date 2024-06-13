@@ -12,7 +12,6 @@ const Register = () => {
 
   const registerHandler = async () => {
     const result = await authContext.register(userId, password, studentNumber);
-    console.log("result", result);
 
     if (result) navigate("/");
     else alert("해당 ID를 가진 사용자가 이미 존재합니다.");
