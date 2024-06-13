@@ -44,7 +44,7 @@ const Carpool = () => {
 
       <CarpoolContainer>
         {carpoolList.map((carpool) => (
-          <CarpoolCard carpool={carpool}></CarpoolCard>
+          <CarpoolCard key={carpool.id} carpool={carpool}></CarpoolCard>
         ))}
       </CarpoolContainer>
     </Wrapper>
