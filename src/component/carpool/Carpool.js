@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import SearchBar from "./SearchBar";
 import CarpoolCard from "./CarpoolCard";
 import { ReactComponent as RightArrow } from "../../style/asset/arrow-right-solid.svg";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import apiClient from "../../api/apiClient";
 
@@ -13,9 +11,7 @@ const Carpool = () => {
 
   useEffect(() => {
     const fetchCarpoolList = async () => {
-      let res = await apiClient.get("/api/carpool");
-      console.log(res);
-      console.log(res.data);
+      const res = await apiClient.get("/api/carpool");
       setCarpoolList(res.data);
     };
     fetchCarpoolList();
@@ -45,8 +41,6 @@ const Carpool = () => {
           </GoToAddCarpool>
         </Description>
       </Instroduction>
-
-      {/* <SearchBar></SearchBar> */}
 
       <CarpoolContainer>
         {carpoolList.map((carpool) => (

@@ -1,9 +1,9 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useAuth } from "../../AuthProvider";
 import apiClient from "../../api/apiClient";
+import Loading from "../../layout/Loading";
 
 const RegisterCarpoolPage = () => {
   const params = useParams();
@@ -14,45 +14,36 @@ const RegisterCarpoolPage = () => {
   useEffect(() => {
     const fetchCarpool = async (id) => {
       const res = await apiClient.get(`/api/carpool/${id}`);
-      console.log("carpool", carpool);
       setCarpool(res.data);
     };
-    console.log("params id " + params.id);
     if (params.id !== "undefined") {
       fetchCarpool(params.id);
     }
   }, [params.id]);
 
   if (!carpool) {
-    return <div>Loading...</div>; // 또는 다른 로딩 표시 방법
+    return <Loading />;
   }
 
   const registerHandler = async () => {
-    // authContext.id를 제출해야한다. 얘는 userId로 받아와야 할 듯
     if (!authContext.isLogined) {
       navigate("/login");
       return;
     }
 
-    console.log("clicked!");
     const res = await apiClient.post("/api/carpool/register", {
       carpoolId: params.id,
       userId: authContext.id,
     });
 
-    console.log("res : ", res);
-    console.log("res.data", res.data);
-
     if (res.data.id === carpool.id) {
       setCarpool(res.data);
-      navigate("/carpool");
+      navigate(`/carpool/${carpool.id}`);
       return;
     } else {
       alert("이미 신청한 카풀이 존재하여 해당 카풀 신청이 불가능합니다.");
       return;
     }
-
-    // res가 제대로 되었으면 리렌더링 되도록
   };
 
   return (

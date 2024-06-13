@@ -20,7 +20,6 @@ const AddCarpool = () => {
     });
 
     if (result.departures !== departures) {
-      console.log("result.data", result.data);
       alert("이미 등록한 카풀이 존재하여 등록 불가합니다.");
       return;
     }
