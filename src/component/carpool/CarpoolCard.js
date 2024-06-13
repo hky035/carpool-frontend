@@ -24,6 +24,10 @@ const CarpoolCard = ({ carpool }) => {
             <Label>인원</Label>
             {carpool.users}
           </Content>
+          <Content>
+            <Label>시간</Label>
+            {carpool.date}
+          </Content>
         </Info>
       </Wrapper>
     </>
@@ -32,7 +36,7 @@ const CarpoolCard = ({ carpool }) => {
 
 const Wrapper = styled.div`
   width: 250px;
-  height: 300px;
+  height: 370px;
   background-color: #fff;
   box-shadow: var(--shadow);
   border-radius: 15px;
@@ -50,7 +54,7 @@ const Poster = styled.div`
 
 const Info = styled.div`
   box-sizing: border-box;
-  padding: 15px;
+  padding: 10px 15px;
   gap: 5px;
   display: flex;
   flex-direction: column;
