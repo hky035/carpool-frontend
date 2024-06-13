@@ -5,20 +5,21 @@ import CarpoolCard from "./CarpoolCard";
 import { ReactComponent as RightArrow } from "../../style/asset/arrow-right-solid.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import apiClient from "../../api/apiClient";
 
 const Carpool = () => {
   const [carpoolList, setCarpoolList] = useState([]);
   const navigate = useNavigate();
 
-  //   useEffect(() => {
-  //     const fetchCarpoolList = async () => {
-  //       let res = await axios.get("/api/carpool");
-  //       console.log(res);
-  //       console.log(res.data);
-  //       setCarpoolList(res.data);
-  //     };
-  //     fetchCarpoolList();
-  //   }, []);
+  useEffect(() => {
+    const fetchCarpoolList = async () => {
+      let res = await apiClient.get("/api/carpool");
+      console.log(res);
+      console.log(res.data);
+      setCarpoolList(res.data);
+    };
+    fetchCarpoolList();
+  }, []);
 
   return (
     <Wrapper>
@@ -45,7 +46,7 @@ const Carpool = () => {
         </Description>
       </Instroduction>
 
-      <SearchBar></SearchBar>
+      {/* <SearchBar></SearchBar> */}
 
       <CarpoolContainer>
         {carpoolList.map((carpool) => (

@@ -1,10 +1,31 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import apiClient from "../../api/apiClient";
+import { useAuth } from "../../AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const AddCarpool = () => {
   const [departures, setDepartures] = useState("");
   const [arrivals, setArrivals] = useState("");
   const [date, setDate] = useState("");
+  const authContext = useAuth();
+  const navigate = useNavigate();
+
+  const submitHandler = async () => {
+    const result = await apiClient.post("/api/carpool/add", {
+      userId: authContext.id,
+      departures,
+      arrivals,
+      date: date,
+    });
+
+    if (result.departures !== departures) {
+      console.log("result.data", result.data);
+      alert("이미 등록한 카풀이 존재하여 등록 불가합니다.");
+      return;
+    }
+    navigate("/carpool");
+  };
 
   return (
     <Wrapper>
@@ -34,14 +55,14 @@ const AddCarpool = () => {
         <Content>
           <Label for="date">시간</Label>
           <Input
-            placeholder="xxxx년 xx월 xx일"
+            placeholder="xx월 xx일 xx:xx"
             value={date}
             onChange={(e) => setDate(e.target.value)}
             id="date"
           ></Input>
         </Content>
 
-        <RegisterBtn>등록</RegisterBtn>
+        <RegisterBtn onClick={() => submitHandler()}>등록</RegisterBtn>
       </Right>
     </Wrapper>
   );
